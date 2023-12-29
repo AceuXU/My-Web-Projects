@@ -39,3 +39,27 @@
 .p-1{
     padding: 10px;
 }
+
+/* For WebKit based browsers (like Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #333; /* Track color */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #666; /* Thumb color */
+    border-radius: 5px; /* Rounded corners for the thumb */
+  }
+  
+  /* For Firefox */
+  /* This targets the scrollbar container */
+  /* Note: Firefox doesn't support styling the scrollbar directly */
+  /* Instead, it uses the container's background and colors */
+  body {
+    scrollbar-color: #666 #333; /* Thumb and track color */
+    scrollbar-width: thin; /* Width of the scrollbar */
+  }
+  
