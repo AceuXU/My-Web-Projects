@@ -23,6 +23,7 @@ body {
 
 .home {}
 
+
 .home ul li {
     display: flex;
     gap: 15px;
@@ -168,16 +169,45 @@ body {
 
 }
 
-.playbar{
+.playbar {
     position: absolute;
     bottom: 0;
-    background-color:  #17a24a;
-    width: 100%;
+    background-color: #c9cdca;
+    width: 92%;
     padding: 12px;
 }
 
-.songbuttons{
+.songbuttons {
     display: flex;
     justify-content: center;
     gap: 16px;
+}
+
+.songList ul {
+    padding: 0 12px;
+}
+
+.songList ul li {
+    list-style-type: decimal;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    cursor: pointer;
+    padding: 12px 0;
+    border: 1px solid white;
+    margin: 12px -4px;
+    padding: 12px;
+    border-radius: 5px;
+
+}
+
+.playnow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playnow span {
+    font-size: 15px;
+    width: 82px;
 }
