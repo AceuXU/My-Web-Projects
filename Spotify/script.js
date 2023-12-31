@@ -1,3 +1,23 @@
+
+let currentSong = new Audio();
+
+function secondsToMinutesSeconds(seconds) {
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+// Example usage:
+const totalSeconds = 132; // Replace this with your total seconds
+const formattedTime = secondsToMinutesSeconds(totalSeconds);
+console.log(formattedTime); // Outputs: 02:12
+
+
 async function getSongs() {
 
     let a = await fetch("http://127.0.0.1:5500/songs/");
@@ -18,12 +38,24 @@ async function getSongs() {
     return songs;
 }
 
-async function main() {
+const playMusic = (track, pause = false) => {
+    // let audio = new Audio("/songs/" + track)
+    currentSong.src = "/songs/" + track
+    if (!pause) {
+        currentSong.play();
+        play.src = "Svg/pause.svg"
+    }
 
+    document.querySelector(".songinfo").innerHTML = decodeURI(track)
+    document.querySelector(".songtime").innerHTML = "00:00 / 00:00"
+}
+
+async function main() {
     // list of all songs
     let songs = await getSongs();
-    console.log(songs)
+    playMusic(songs[0], true)
 
+    // show all the songs in the playlist
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0]
     for (const song of songs) {
         songUL.innerHTML = songUL.innerHTML + `<li>  <img class="invert" src="Svg/music.svg" alt="" />
@@ -38,15 +70,33 @@ async function main() {
          </li>`;
     }
 
-    // playing first song
-    var audio = new Audio(songs[0]);
-    // audio.play();
+    // Attach an event lister to each song
+    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
+        e.addEventListener("click", element => {
+            console.log(e.querySelector(".info").firstElementChild.innerHTML);
+            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
+        })
 
-    audio.addEventListener("loadeddata", () => {
-        let duration = audio.duration;
-        console.log(audio.duration, audio.currentSrc, audio.currentTime);
-        // The duration variable now holds the duration (in seconds) of the audio clip
-    });
+    })
+
+    // Attach an event listener to play next and previous
+    play.addEventListener("click", () => {
+        if (currentSong.paused) {
+            currentSong.play()
+            play.src = "Svg/pause.svg"
+        }
+        else {
+            currentSong.pause()
+            play.src = "Svg/play.svg"
+        }
+    })
+
+    // listet for time-update event
+    currentSong.addEventListener("timeupdate", () => {
+        console.log(currentSong.currentTime, currentSong.duration);
+        document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)}/${secondsToMinutesSeconds(currentSong.duration)}`
+    })
+
 }
 
 main();

@@ -6,6 +6,7 @@
     <title>Spotify – Web Player: Music for everyone</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="utility.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
@@ -30,19 +31,7 @@
           </div>
 
           <div class="songList">
-            <ul>
-              <li>
-                <img class="invert" src="Svg/music.svg" alt="" />
-                <div class="info">
-                  <div>Song Name</div>
-                  <div>Song Artist</div>
-                </div>
-                <div class="playnow">
-                  <span>Play Now</span>
-                  <img class="invert" src="Svg/play.svg" alt="" />
-                </div>
-              </li>
-            </ul>
+            <ul></ul>
           </div>
 
           <div class="footer">
@@ -177,13 +166,26 @@
           </div>
 
           <div class="playbar">
-            <div class="songinfo"></div>
-            <div class="songbuttons">
-              <img src="Svg/prevsongs.svg" alt="" />
-              <img src="Svg/play.svg" alt="" />
-              <img src="Svg/nextsong.svg" alt="" />
+            <div class="seekbar">
+              <div class="circle">
+
+              </div>
             </div>
-            <div class="songtime"></div>
+            <div class="abovebar">
+
+            
+            <div class="songinfo">
+              
+            </div>
+            <div class="songbuttons">
+              <img id="previous" src="Svg/prevsongs.svg" alt="" />
+              <img id="play" src="Svg/play.svg" alt="" />
+              <img id="next" src="Svg/nextsong.svg" alt="" />
+            </div>
+            <div class="songtime">
+
+            </div>
+          </div>
           </div>
         </div>
       </div>
