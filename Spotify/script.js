@@ -1,7 +1,12 @@
 
 let currentSong = new Audio();
+let songs;
 
 function secondsToMinutesSeconds(seconds) {
+
+    if(isNaN(seconds) || seconds < 0){
+        return "00:00";
+    }
 
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
@@ -11,12 +16,6 @@ function secondsToMinutesSeconds(seconds) {
 
     return `${formattedMinutes}:${formattedSeconds}`;
 }
-
-// Example usage:
-const totalSeconds = 132; // Replace this with your total seconds
-const formattedTime = secondsToMinutesSeconds(totalSeconds);
-console.log(formattedTime); // Outputs: 02:12
-
 
 async function getSongs() {
 
@@ -52,7 +51,7 @@ const playMusic = (track, pause = false) => {
 
 async function main() {
     // list of all songs
-    let songs = await getSongs();
+    songs = await getSongs();
     playMusic(songs[0], true)
 
     // show all the songs in the playlist
@@ -91,10 +90,10 @@ async function main() {
         }
     })
 
-    // listet for time-update event
+    // listen for time-update event
     currentSong.addEventListener("timeupdate", () => {
         console.log(currentSong.currentTime, currentSong.duration);
-        document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)}/${secondsToMinutesSeconds(currentSong.duration)}`
+        document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)} /${secondsToMinutesSeconds(currentSong.duration)}`
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
     })
 
@@ -113,6 +112,22 @@ async function main() {
      // Add an event listner for close button
      document.querySelector(".close").addEventListener("click", ()=>{
         document.querySelector(".left").style.left = "-120%";
+     })
+
+     // Add an event listener to previous and next
+     previous.addEventListener("click", () =>{
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+        if((index-1) >= 0){
+            playMusic(songs[index+1])
+        }
+     })
+
+     next.addEventListener("click", () =>{
+
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+        if((index+1) < songs.length){
+            playMusic(songs[index+1])
+        }
      })
 
 
