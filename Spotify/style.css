@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,800;1,500&display=swap');
 
+:root {
+    --a: 0;
+}
+
 * {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
-.close{
+.close {
     display: none;
 }
 
@@ -114,6 +118,13 @@ body {
     position: relative;
 }
 
+.card:hover {
+    background-color: rgba(100, 100, 100, 0.325);
+    cursor: pointer;
+    transition: all 0.5s;
+    --a: 1;
+}
+
 .card>* {
     padding-top: 10px;
 }
@@ -135,7 +146,7 @@ body {
     position: absolute;
     top: 170px;
     right: 17px;
-    opacity: 1;
+    opacity: var(--a);
     transition: all 1s ease-out;
 }
 
@@ -195,7 +206,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5px;
+    /* margin-bottom: 12px; */
     gap: 16px;
 }
 
@@ -226,6 +237,10 @@ body {
 .songList .info {
     font-size: 13px;
     width: 344px;
+}
+
+.info div {
+    word-break: break-all;
 }
 
 .hamburger {
@@ -276,20 +291,40 @@ body {
     cursor: pointer;
 }
 
-.songinfo,
+.timevol {
+    display: flex;
+    justify-content: center;
+    align-items: ce;
+}
+
+
+.songinfo {
+    color: black;
+    padding: 7px 12px;
+    width: 250px;
+}
+
 .songtime {
     color: black;
-    padding: 0 12px;
-    width: 250px;
+    padding: 7px 12px;
+    width: 125px;
+}
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    /* margin-bottom: 10px; */
 }
 
 .abovebar {
     display: flex;
     justify-content: space-between;
-    /* margin: 20px 0; */
+    margin-bottom: 7px;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1200px) {
     .left {
         position: absolute;
         left: -120%;
@@ -297,13 +332,26 @@ body {
         z-index: 1;
         width: 373px;
         background-color: black;
+        padding: 0;
+    }
+
+    .songinfo,
+    .songtime {
+        width: auto;
     }
 
     .left .close {
         position: absolute;
-        right: 27px;
+        right: 31px;
         top: 27px;
         width: 29px;
+    }
+
+    .timevol {
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        gap: 13px;
     }
 
     .right {
@@ -314,7 +362,7 @@ body {
         width: calc(100vw - 75px);
     }
 
-    .seekbar{
+    .seekbar {
         width: calc(100vw - 120px);
     }
 
@@ -322,26 +370,32 @@ body {
         display: block;
     }
 
-    .right{
+    .right {
         margin: 0;
     }
 
-    .card{
-        width: 90vw;
+    .card {
+        width: 44vw;
     }
 
-    .cardContainer{
+    .cardContainer {
         margin: 0;
         justify-content: center;
     }
 
-    .close{
+    .close {
         display: block;
     }
 
-    .abovebar{
+    .abovebar {
         flex-direction: column;
-        gap: 10px;
+        gap: 23px;
         align-items: center;
+    }
+}
+
+@media (max-width: 450px) {
+    .card {
+        width: 100vw;
     }
 }
