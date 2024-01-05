@@ -29,9 +29,6 @@ body {
     position: relative;
 }
 
-.home {}
-
-
 .home ul li {
     display: flex;
     gap: 15px;

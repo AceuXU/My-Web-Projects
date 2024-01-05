@@ -90,7 +90,7 @@ const playMusic = (track, pause = false) => {
 //         const e = array[index];
 //         if (e.href.includes("/songs") && !e.href.includes(".htaccess")) {
 //             let folder = e.href.split("/").slice(-2)[0]
-           
+
 //             // Get the metadata of the folder
 //             let a = await fetch(`/songs/${folder}/info.json`)
 //             let response = await a.json();
@@ -110,14 +110,14 @@ const playMusic = (track, pause = false) => {
 //         }
 //     }
 
-    // Load the playlist whenever card is clicked
-    Array.from(document.getElementsByClassName("card")).forEach(e => {
-        e.addEventListener("click", async item => {
-            console.log("Fetching Songs")
-            songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`)
-            playMusic(songs[0])
-        })
+// Load the playlist whenever card is clicked
+Array.from(document.getElementsByClassName("card")).forEach(e => {
+    e.addEventListener("click", async item => {
+        console.log("Fetching Songs")
+        songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`)
+        playMusic(songs[0])
     })
+})
 // }
 
 async function main() {
