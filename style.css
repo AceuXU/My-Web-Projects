@@ -141,7 +141,7 @@ body {
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 170px;
+    bottom: 130px;
     right: 17px;
     opacity: var(--a);
     transition: all 1s ease-out;
@@ -186,8 +186,9 @@ body {
 }
 
 .playbar {
+    justify-content: center;    
     position: fixed;
-    bottom: 30px;
+    bottom: 20px;
     padding: 12px;
     /* background-color: rgb(216 216 216 / 97%); */
     background-color: #dad5d5;
@@ -268,7 +269,7 @@ body {
     border-radius: 10px;
     background: black;
     position: absolute;
-    bottom: 0;
+    bottom: 5px;
     margin: 6px;
     cursor: pointer;
 }
@@ -324,12 +325,16 @@ body {
 @media (max-width: 1200px) {
     .left {
         position: absolute;
-        left: -120%;
+        left: -130%;
         transition: all .3s;
         z-index: 1;
         width: 373px;
         background-color: black;
         padding: 0;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+
     }
 
     .songinfo,
@@ -380,8 +385,17 @@ body {
         justify-content: center;
     }
 
+    .cardContainer {
+        max-height: unset;
+        overflow-y: unset;
+    }
+
     .close {
         display: block;
+    }
+
+    .playbar {
+        right: 25px;
     }
 
     .abovebar {
@@ -391,8 +405,33 @@ body {
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 500px) {
     .card {
+        width: 100%;
+    }
+
+    .header>* {
+        padding: 2px;
+    }
+
+    .buttons>* {
+        margin: 0 6px;
+    }
+
+    .header {
+        padding: 7px;
+    }
+
+    .spotifyPlaylist h1 {
+        padding: 4px;
+    }
+
+    .library {
+        height: 85vh;
+    }
+
+    .left {
         width: 100vw;
     }
+
 }
